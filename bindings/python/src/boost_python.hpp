@@ -6,10 +6,15 @@
 #define BOOST_PYTHON_HPP
 
 #include <libtorrent/aux_/disable_warnings_push.hpp>
-#include <iostream>
 #include <boost/python.hpp>
+
+#include <boost/bind/placeholders.hpp>
+using namespace boost::placeholders;
 #include <boost/python/stl_iterator.hpp>
+
 #include <libtorrent/aux_/disable_warnings_pop.hpp>
+
+#include <iostream>
 
 // something in here creates a define for this, presumably to make older
 // versions of msvc appear to support snprintf
