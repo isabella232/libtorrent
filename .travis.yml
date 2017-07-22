@@ -191,7 +191,7 @@ script:
 
 # run through autotools and ./configure to make sure it works
   - 'if [[ "$autotools" == "1" ]]; then
-      (cd $BOOST_ROOT; bjam -j2 system; mkdir stage; cp bin.v2/libs/system/build/*/debug/*.so stage/);
+      (cd $BOOST_ROOT; bjam -j2 stage);
       ./autotool.sh &&
       export CXX=g++-5 &&
       export CC=gcc-5 &&
