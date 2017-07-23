@@ -171,7 +171,7 @@ script:
 # as the main library, so we cannot stage them to the same directory
 # here we specify the temporary lib dir as a path to look for the main library
   - 'if [ "$python" == "1" ]; then
-      bjam -j3 warnings-as-errors=on crypto=$crypto debug-iterators=on picker-debugging=on invariant-checks=full $toolset variant=$variant link=shared install location=./lib;
+      bjam -j3 warnings-as-errors=on crypto=$crypto debug-iterators=on picker-debugging=on invariant-checks=full $toolset variant=$variant link=shared install location=./lib install-dependencies=on;
     fi'
 
 # a binary built with sanitizer does not interact well with python
