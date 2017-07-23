@@ -128,6 +128,7 @@ set(sources
 	mmap
 	posix_disk_io
 	posix_storage
+	stack_allocator
 
 # -- extensions --
 	ut_pex
