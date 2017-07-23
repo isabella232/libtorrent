@@ -197,7 +197,7 @@ script:
       export CC=gcc-5 &&
       export CXXFLAGS="-Werror -Wno-deprecated-declarations" &&
       ./configure --enable-debug --enable-encryption --enable-examples --enable-tests --enable-python-binding &&
-      make -j2 check;
+      LD_LIBRARY_PATH=$BOOST_ROOT/stage/lib make -j2 check;
     fi'
 
   - ccache --show-stats
