@@ -3,6 +3,8 @@ There should be a builder for each of linux, osx, and windows, and one complete 
 To build for a platform, use:
 ./mk.sh [linux] [osx] [windows]
 
+if the project is being built from outside of this repo's root directory, set LIBTORRENT_DIR to the directory of this repo
+
 To zip up the artifacts, use:
 ./mk.sh zip
 
