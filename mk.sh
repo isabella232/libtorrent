@@ -14,7 +14,7 @@ BUILD_VARIANT=release
 
 usage ()
 {
-    echo "usage: ${0} [linux] [osx] [windows] [zip]"
+    echo "usage: ${0} [linux] [macosx] [windows] [zip]"
 }
 
 if [ $# = 0 ]
@@ -31,8 +31,8 @@ do
 	linux)
 	    LINUX=true
 	    ;;
-	osx)
-	    OSX=true
+	macosx)
+	    MACOSX=true
 	    ;;
 	windows)
 	    WINDOWS=true
@@ -50,7 +50,7 @@ do
 done
 
 if [[ "$LINUX" != "true" ]] && \
-   [[ "$OSX" != "true" ]] && \
+   [[ "$MACOSX" != "true" ]] && \
    [[ "$WINDOWS" != "true" ]] && \
    [[ "$ZIP" != "true" ]];
 then
@@ -66,10 +66,10 @@ then
     $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux32/lib --includedir=builds/include
 fi
 
-if [[ $OSX = true ]]
+if [[ $MACOSX = true ]]
 then
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/osx64/lib --includedir=builds/include
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/osx32/lib --includedir=builds/include
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx64/lib --includedir=builds/include
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx32/lib --includedir=builds/include
 fi
 
 if [[ $WINDOWS = true ]]
