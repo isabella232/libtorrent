@@ -56,3 +56,6 @@ libtorrent_logs*
 *.pyc
 dist
 *.egg-info
+
+# Builds artifacts by ./mk.sh
+builds
