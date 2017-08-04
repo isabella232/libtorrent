@@ -2,7 +2,6 @@
 
 set -e
 
-BOOST_ROOT=${BOOST_ROOT:=/home/builduser/boost_1_64_0}
 LIBTORRENT_DIR=${LIBTORRENT_DIR:=`pwd`}
 
 BUILD_VARIANT=release
@@ -57,12 +56,16 @@ mkdir -p builds
 
 if [[ $LINUX = true ]]
 then
+    BOOST_ROOT=${BOOST_ROOT:=/home/builduser/boost_1_64_0}
+
     $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux64/lib --includedir=builds/include toolset=gcc --cxxflags="-std=c++98"
     $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux32/lib --includedir=builds/include toolset=gcc --cxxflags="-std=c++98"
 fi
 
 if [[ $MACOSX = true ]]
 then
+    BOOST_ROOT=${BOOST_ROOT:=/Users/builduser/boost_1_64_0}
+    
     $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx64/lib --includedir=builds/include
     $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx32/lib --includedir=builds/include
 fi
