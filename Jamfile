@@ -257,11 +257,11 @@ rule warnings ( properties * )
 	{
 		result += <cflags>-Wall ;
 		result += <cflags>-Wextra ;
-		result += <cflags>pedantic ;
+		result += <cflags>-pedantic ;
 #		result += <cflags>-Wmisleading-indentation ;
 		result += <cflags>-Wparentheses ;
 		result += <cflags>-Wvla ;
-		result += <cxxflags>c++11-compat ;
+#		result += <cxxflags>-c++11-compat ;
 		result += <cflags>-Wno-format-zero-length ;
 		result += <cflags>-Wno-long-long ;
 
