@@ -2,12 +2,7 @@
 
 set -e
 
-if [ -z ${BOOST_ROOT+x} ];
-then
-    echo "BOOST_ROOT" must be set
-    exit 1
-fi
-
+BOOST_ROOT=${BOOST_ROOT:=/share/build-tools/boost
 LIBTORRENT_DIR=${LIBTORRENT_DIR:=`pwd`}
 
 BUILD_VARIANT=release
