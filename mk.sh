@@ -2,7 +2,7 @@
 
 set -e
 
-BOOST_ROOT=${BOOST_ROOT:=/home/builduser/boost_1_64_0
+BOOST_ROOT=${BOOST_ROOT:=/home/builduser/boost_1_64_0}
 LIBTORRENT_DIR=${LIBTORRENT_DIR:=`pwd`}
 
 BUILD_VARIANT=release
