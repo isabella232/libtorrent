@@ -57,8 +57,8 @@ mkdir -p builds
 
 if [[ $LINUX = true ]]
 then
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux64/lib --includedir=builds/include
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux32/lib --includedir=builds/include
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux64/lib --includedir=builds/include toolset=gcc --cxxflags="-std=c++98"
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux32/lib --includedir=builds/include toolset=gcc --cxxflags="-std=c++98"
 fi
 
 if [[ $MACOSX = true ]]
