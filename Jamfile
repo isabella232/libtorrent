@@ -706,6 +706,8 @@ ED25519_SOURCES =
 local usage-requirements =
 	<include>./include
 	<include>./include/libtorrent
+	<include>./libtorrent_w/include
+	<include>./libtorrent_w/include/libtorrent_w
 	<include>/usr/sfw/include
 # freebsd doesn't seem to include this automatically
 # and iconv.h is installed there
@@ -736,6 +738,7 @@ lib torrent
 
 	: # sources
 	src/$(SOURCES).cpp
+	[ glob libtorrent_w/src/*.cpp ]
 
 	: # requirements
 	<include>./ed25519/src
