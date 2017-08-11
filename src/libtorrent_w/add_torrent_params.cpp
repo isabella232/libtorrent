@@ -6,13 +6,12 @@
 #include "libtorrent/aux_/disable_warnings_pop.hpp"
 #include "libtorrent/torrent_info.hpp"
 
-
 #include <boost/shared_ptr.hpp>
 
 namespace libtorrent_w
 {
   add_torrent_params::add_torrent_params()
-    : add_torrent_params_impl()
+    : add_torrent_params_impl(new libtorrent::add_torrent_params())
     , version(add_torrent_params_impl->version)
     , trackers(add_torrent_params_impl->trackers)
     , url_seeds(add_torrent_params_impl->url_seeds)
@@ -29,16 +28,20 @@ namespace libtorrent_w
     , download_limit(add_torrent_params_impl->download_limit)
   { }
 
-  
+  add_torrent_params::~add_torrent_params()
+  {
+    delete add_torrent_params_impl;
+  }
+
   void add_torrent_params::set_ti(torrent_info* ti)
   {
-    this->add_torrent_params_impl->ti.reset(ti->torrent_info_impl.get());
+    this->add_torrent_params_impl->ti.reset(ti->torrent_info_impl);
   }
   torrent_info* add_torrent_params::get_ti()
   {
     return new torrent_info(this->add_torrent_params_impl->ti.get());
   }
-  
+
   void add_torrent_params::set_flags(uint64_t flags)
   {
     this->add_torrent_params_impl->flags = flags;

@@ -1,14 +1,21 @@
 #include "libtorrent/session.hpp"
 #include "libtorrent/torrent_handle.hpp"
+#include "libtorrent/add_torrent_params.hpp"
 
 #include "libtorrent_w/session.hpp"
 #include "libtorrent_w/torrent_handle.hpp"
+#include "libtorrent_w/add_torrent_params.hpp"
 
 namespace libtorrent_w
 {
   session::session() :
     session_impl(new libtorrent::session)
   { }
+
+  session::~session()
+  {
+    delete session_impl;
+  }
 
   torrent_handle session::add_torrent(add_torrent_params const& params)
   {
@@ -24,8 +31,11 @@ namespace libtorrent_w
     session_impl->remove_torrent(*h.torrent_handle_impl, options);
   }
 
+  /*
+  TORRENT_EXPORT
   void session::pop_alerts(std::vector<alert*>* alerts)
   {
     session_impl->pop_alerts(alerts);
   }
+  */
 }

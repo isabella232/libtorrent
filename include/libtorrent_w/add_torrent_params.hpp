@@ -35,7 +35,10 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <string>
 #include <vector>
+#include <memory>
 #include <stdint.h>
+
+#include "libtorrent_w/export.hpp"
 
 namespace libtorrent
 {
@@ -72,19 +75,18 @@ namespace libtorrent_w
 	// used for the torrent as long as it doesn't have metadata. See
 	// ``torrent_handle::name``.
 	//
-#include "libtorrent/aux_/disable_warnings_push.hpp"
-	class add_torrent_params
+	struct TORRENT_EXPORT_W add_torrent_params
 	{
 	private:
 	  friend class session;
-	  std::unique_ptr<libtorrent::add_torrent_params> add_torrent_params_impl;
+	  libtorrent::add_torrent_params* add_torrent_params_impl;
 	public:
 		// The constructor can be used to initialize the storage constructor,
 		// which determines the storage mechanism for the downloaded or seeding
 		// data for the torrent. For more information, see the ``storage`` field.
 		add_torrent_params();
+		~add_torrent_params();
 
-#include "libtorrent/aux_/disable_warnings_pop.hpp"
 		// values for the ``flags`` field
 		enum flags_t
 		{
@@ -329,6 +331,7 @@ namespace libtorrent_w
 		int& upload_limit;
 		int& download_limit;
 	};
+  
 }
 
 #endif

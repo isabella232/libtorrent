@@ -3,6 +3,9 @@
 #ifndef TORRENT_INFO_HPP_INCLUDED_W
 #define TORRENT_INFO_HPP_INCLUDED_W
 
+#include <memory>
+#include "libtorrent_w/export.hpp"
+
 namespace libtorrent
 {
   class torrent_info;
@@ -10,16 +13,16 @@ namespace libtorrent
 
 namespace libtorrent_w
 {
-  class torrent_info
+  class TORRENT_EXPORT_W torrent_info
   {
   public:
     torrent_info(std::string const& filename);
+    ~torrent_info();
   private:
-    friend class add_torrent_params;
-
+    friend struct add_torrent_params;
     torrent_info(libtorrent::torrent_info* ti);
     
-    std::unique_ptr<libtorrent::torrent_info> torrent_info_impl;
+    libtorrent::torrent_info* torrent_info_impl;
   };
 }
 

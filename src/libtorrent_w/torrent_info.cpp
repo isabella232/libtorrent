@@ -3,7 +3,6 @@
 
 namespace libtorrent_w
 {
-
   torrent_info::torrent_info(std::string const& filename)
     : torrent_info_impl(new libtorrent::torrent_info(filename))
   { }
@@ -11,4 +10,9 @@ namespace libtorrent_w
   torrent_info::torrent_info(libtorrent::torrent_info* ti)
     : torrent_info_impl (ti)
   { }
+
+  torrent_info::~torrent_info()
+  {
+    delete torrent_info_impl;
+  }
 }

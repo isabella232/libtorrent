@@ -706,8 +706,7 @@ ED25519_SOURCES =
 local usage-requirements =
 	<include>./include
 	<include>./include/libtorrent
-	<include>./libtorrent_w/include
-	<include>./libtorrent_w/include/libtorrent_w
+	<include>./include/libtorrent_w
 	<include>/usr/sfw/include
 # freebsd doesn't seem to include this automatically
 # and iconv.h is installed there
@@ -737,8 +736,11 @@ project torrent ;
 lib torrent
 
 	: # sources
+	src/libtorrent_w/torrent_handle.cpp
+	src/libtorrent_w/torrent_info.cpp
+	src/libtorrent_w/add_torrent_params.cpp
+	src/libtorrent_w/session.cpp
 	src/$(SOURCES).cpp
-	[ glob libtorrent_w/src/*.cpp ]
 
 	: # requirements
 	<include>./ed25519/src
@@ -759,7 +761,6 @@ lib torrent
 	<toolset>msvc:<define>_SCL_SECURE_NO_DEPRECATE
 	<toolset>msvc:<define>_CRT_SECURE_NO_DEPRECATE
 
-	<tag>@tag
 
 	$(usage-requirements)
 
@@ -767,11 +768,20 @@ lib torrent
 	<threading>multi
 
 	: # usage requirements
+	<source>src/libtorrent_w/torrent_handle.cpp
+	<source>src/libtorrent_w/torrent_info.cpp
+	<source>src/libtorrent_w/add_torrent_params.cpp
+	<source>src/libtorrent_w/session.cpp
+
 	$(usage-requirements)
 	<link>shared:<define>TORRENT_LINKING_SHARED
 	;
 
-headers = [ path.glob-tree include/libtorrent : *.hpp ] ;
+headers =
+	include/libtorrent/aux_/disable_warnings_push.hpp
+	include/libtorrent/aux_/disable_warnings_pop.hpp
+	[ path.glob-tree include/libtorrent_w : *.hpp ]
+	;
 
 package.install install
 	: <install-source-root>libtorrent

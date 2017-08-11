@@ -9,7 +9,10 @@ namespace libtorrent_w
 
   torrent_handle::torrent_handle(torrent_handle const& t)
     : torrent_handle_impl(new libtorrent::torrent_handle(*t.torrent_handle_impl))
-  {
+  { }
 
+  torrent_handle::~torrent_handle()
+  {
+    delete torrent_handle_impl;
   }
 }
