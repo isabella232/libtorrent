@@ -62,20 +62,20 @@ mkdir -p builds
 
 if [[ $LINUX = true ]]
 then
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux64/lib --includedir=builds/include
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux32/lib --includedir=builds/include
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux64/lib --includedir=builds/include link=static
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=linux --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/linux32/lib --includedir=builds/include link=static
 fi
 
 if [[ $MACOSX = true ]]
 then
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx64/lib --includedir=builds/include
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx32/lib --includedir=builds/include
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx64/lib --includedir=builds/include link=static
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=darwin --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/macosx32/lib --includedir=builds/include link=static
 fi
 
 if [[ $WINDOWS = true ]]
 then
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=windows --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/windows64/lib --includedir=builds/include
-    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=windows --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/windows32/lib --includedir=builds/include
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=windows --address-model=64 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/windows64/lib --includedir=builds/include link=static
+    $BOOST_ROOT/b2 -sBOOST_ROOT="$BOOST_ROOT" -q $BUILD_VARIANT target-os=windows --address-model=32 --build-dir=$LIBTORRENT_DIR/bin install --libdir=builds/windows32/lib --includedir=builds/include link=static
 fi
 
 if [[ $ZIP = true ]]
