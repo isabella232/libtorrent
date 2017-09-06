@@ -80,6 +80,6 @@ fi
 
 if [[ $ZIP = true ]]
 then
-     cp -R $LIBTORRENT_DIR/include/libtorrent/* builds/include
-    ( cd builds ; zip builds.zip include lib )
+     cp -R $BOOST_ROOT/boost builds/include/boost
+    ( cd builds ; zip -r builds.zip include linux64 linux32 macosx64 macosx32 windows64 windows32 )
 fi
